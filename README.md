@@ -38,6 +38,24 @@ podman run --rm -ti --network lava --name lava-dispatcher-01 --hostname lava-dis
   docker.io/lavasoftware/lava-dispatcher:2024.03
 ```
 
+### Custom Device Types
+```shell
+cat > /etc/lava-server/dispatcher-config/device-types/generic-uboot.jinja2 <<EOF
+{% extends 'base-uboot.jinja2' %}
+EOF
+
+cat > /etc/lava-server/dispatcher-config/devices/generic-01.jinja2 <<EOF
+{% extends 'generic-uboot.jinja2' %}
+{% set flasher_deploy_commands = [
+     "echo please flash image file: {IMAGE}",
+     "sleep 5",
+  ]
+%}
+EOF
+
+lava-server manage device-types add generic-uboot
+```
+
 ### Example Jobs
 
 https://docs.lavasoftware.org/lava/first-job.html
