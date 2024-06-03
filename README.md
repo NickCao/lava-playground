@@ -19,7 +19,9 @@ podman exec lava-server \
 podman exec lava-server \
   lava-server manage device-types add qemu
 podman exec lava-server \
-  lava-server manage devices add --device-type qemu --worker lava-dispatcher-01 qemu-01
+  lava-server manage device-types add generic-uboot
+podman exec lava-server \
+  lava-server manage sync
 
 podman exec lava-dispatcher-01 \
   apt-get update
@@ -31,12 +33,6 @@ podman run --rm -ti --network lava --name lava-dispatcher-01 --hostname lava-dis
   -e "URL=http://lava-server" \
   -e "TOKEN=--token <TOKEN>" \
   docker.io/lavasoftware/lava-dispatcher:2024.03
-```
-
-### Custom Device Types
-```shell
-lava-server manage device-types add generic-uboot
-lava-server manage sync
 ```
 
 ### Example Jobs
