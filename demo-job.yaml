@@ -1,0 +1,26 @@
+device_type: generic-uboot
+job_name: Demo Job
+
+timeouts:
+  job:
+    minutes: 15
+  action:
+    minutes: 5
+  connection:
+    minutes: 2
+
+priority: medium
+visibility: public
+
+actions:
+- deploy:
+    timeout:
+      minutes: 20
+    to: flasher
+    images:
+      image:
+        url: "https://github.com/starfive-tech/VisionFive2/releases/download/JH7110_VF2_515_v5.12.0/visionfive2_fw_payload.img"
+- boot:
+    timeout:
+      minutes: 20
+    method: minimal
