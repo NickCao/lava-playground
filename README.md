@@ -32,6 +32,7 @@ podman exec lava-dispatcher-01 \
 # {% set memory = '1024' %}
 
 podman run --rm -ti --network lava --name lava-dispatcher-01 --hostname lava-dispatcher-01 \
+  --device /dev/kvm \
   -e "URL=http://lava-server" \
   -e "TOKEN=--token <TOKEN>" \
   docker.io/lavasoftware/lava-dispatcher:2024.03
