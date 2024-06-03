@@ -46,10 +46,22 @@ EOF
 
 cat > /etc/lava-server/dispatcher-config/devices/generic-01.jinja2 <<EOF
 {% extends 'generic-uboot.jinja2' %}
+
+{% set connection_command = 'telnet consoleserver 7505' %}
+{% set hard_reset_command = 'echo please reset board' %}
+{% set power_on_command = 'echo please power on board' %}
+{% set power_off_command = 'echo please power off board' %}
+
 {% set flasher_deploy_commands = [
      "echo please flash image file: {IMAGE}",
      "sleep 5",
   ]
+%}
+
+{% set sync_to_lava = {
+     'device_type':      'generic-uboot',
+          'worker': 'lava-dispatcher-01',
+  }
 %}
 EOF
 
