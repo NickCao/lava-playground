@@ -5,6 +5,9 @@ https://docs.lavasoftware.org/lava/docker-admin.html
 ### Setup
 
 ```shell
+podman build ./server -t localhost/lava-server
+podman build ./dispatcher -t localhost/lava-dispatcher
+
 podman network create lava
 podman run --rm -ti --network lava --name lava-server --hostname lava-server -p 8080:80 \
   -e "LAVA_SITE=lava-server" \
