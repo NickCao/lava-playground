@@ -66,6 +66,7 @@ cat > /etc/lava-server/dispatcher-config/devices/generic-01.jinja2 <<EOF
 EOF
 
 lava-server manage device-types add generic-uboot
+lava-server manage sync
 ```
 
 ### Example Jobs
