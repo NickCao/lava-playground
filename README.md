@@ -23,11 +23,6 @@ podman exec lava-server \
 podman exec lava-server \
   lava-server manage sync
 
-podman exec lava-dispatcher-01 \
-  apt-get update
-podman exec lava-dispatcher-01 \
-  apt-get install -y linux-image-amd64
-
 podman run --rm -ti --network lava --name lava-dispatcher-01 --hostname lava-dispatcher-01 \
   --device /dev/kvm \
   -e "URL=http://lava-server" \
