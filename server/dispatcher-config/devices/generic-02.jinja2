@@ -1,0 +1,17 @@
+{% extends 'generic-uboot.jinja2' %}
+
+{% set connection_command = 'telnet host.containers.internal 8023' %}
+{% set hard_reset_command = 'wait-for-conn please reset board' %}
+{% set power_on_command = 'wait-for-conn please power on board' %}
+{% set power_off_command = 'wait-for-conn please power off board' %}
+
+{% set flasher_deploy_commands = [
+     "wait-for-conn please flash image file: {IMAGE}",
+  ]
+%}
+
+{% set sync_to_lava = {
+     'device_type':      'generic-uboot',
+          'worker': 'lava-dispatcher-01',
+  }
+%}
