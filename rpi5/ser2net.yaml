@@ -1,6 +1,6 @@
 connection: &ttyAMA0
   enable: on
-  accepter: telnet(rfc2217),tcp,localhost,8023
+  accepter: telnet(rfc2217),tcp,8023
   connector: serialdev,/dev/ttyAMA0,115200n81,local
   options:
     kickolduser: true
