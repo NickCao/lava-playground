@@ -29,9 +29,16 @@ podman exec lava-server \
 
 podman run --rm -ti --network lava --name lava-dispatcher-01 --hostname lava-dispatcher-01 \
   --device /dev/kvm \
+  -p 9999:9999 \
   -e "URL=http://lava-server" \
   -e "TOKEN=--token <TOKEN>" \
   localhost/lava-dispatcher
+```
+
+### ser2net
+
+```shell
+ser2net -u -d -n -c ser2net.yaml
 ```
 
 ### Example Jobs
