@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-echo "$@"
-
-socat TCP-LISTEN:9999,reuseaddr,bind=0.0.0.0 /dev/null
