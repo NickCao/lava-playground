@@ -1,0 +1,16 @@
+device_type: jh7110-starfive-visionfive-v2
+
+job_name: jh7110-starfive-visionfive-v2-health-checks
+
+timeouts:
+ job:
+   minutes: 10
+
+priority: medium
+visibility: public
+
+actions:
+- boot:
+    method: bootloader
+    bootloader: u-boot
+    commands: []

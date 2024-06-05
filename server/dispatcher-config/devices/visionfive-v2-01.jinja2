@@ -1,4 +1,4 @@
-{% extends 'generic-uboot.jinja2' %}
+{% extends 'jh7110-starfive-visionfive-v2.jinja2' %}
 
 {% set bootloader_prompt = 'StarFive #' %}
 {% set uboot_final_message = 'Booting bootflow' %}
@@ -19,7 +19,7 @@
 %}
 
 {% set sync_to_lava = {
-     'device_type':      'generic-uboot',
-          'worker': 'lava-dispatcher-01',
+     'device_type': 'jh7110-starfive-visionfive-v2',
+          'worker':            'lava-dispatcher-01',
   }
 %}
