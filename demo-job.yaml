@@ -1,13 +1,12 @@
 device_type: generic-uboot
-job_name: Demo Job
+
+job_name: generic-uboot-health-checks
 
 timeouts:
   job:
     minutes: 100
   action:
-    minutes: 100
-  connection:
-    minutes: 100
+    minutes: 20
 
 priority: medium
 visibility: public
@@ -19,8 +18,27 @@ actions:
     to: flasher
     images:
       image:
-        url: "https://github.com/starfive-tech/VisionFive2/releases/download/JH7110_VF2_515_v5.12.0/visionfive2_fw_payload.img"
+        url: "https://people.redhat.com/abologna/visionfive2/images/20240509/Fedora-Minimal-40-VisionFive2-20240509.n.2-sda.raw.xz"
+        compression: zstd
 - boot:
     timeout:
       minutes: 20
-    method: minimal
+    method: u-boot
+    commands:
+    - usb reset
+    - boot
+    prompts:
+    - "root@fedora-riscv ~"
+    auto_login:
+      login_prompt: "fedora-riscv login:"
+      username: root
+      password_prompt: "Password:"
+      password: fedora_rocks!
+- test:
+    timeout:
+      minutes: 5
+    definitions:
+    - repository: http://git.linaro.org/lava-team/lava-functional-tests.git
+      from: git
+      path: lava-test-shell/smoke-tests-basic.yaml
+      name: smoke-tests-basic
