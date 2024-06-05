@@ -1,5 +1,8 @@
 {% extends 'generic-uboot.jinja2' %}
 
+{% set bootloader_prompt = 'StarFive #' %}
+{% set uboot_final_message = 'Booting bootflow' %}
+
 {% set connection_command = 'telnet host.containers.internal 8023' %}
 {% set hard_reset_command = [
      'jumpstarter power-off jp-c415a913',
