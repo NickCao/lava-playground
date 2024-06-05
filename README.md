@@ -28,7 +28,7 @@ podman exec lava-server \
   lava-server manage sync
 
 podman run --rm -ti --network lava --name lava-dispatcher-01 --hostname lava-dispatcher-01 \
-  --device /dev/kvm \
+  --privileged -v /dev:/dev \
   -p 9999:9999 \
   -e "URL=http://lava-server" \
   -e "TOKEN=--token <TOKEN>" \
