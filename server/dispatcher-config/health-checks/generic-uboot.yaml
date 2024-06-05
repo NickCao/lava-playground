@@ -18,7 +18,8 @@ actions:
     to: flasher
     images:
       image:
-        url: "https://github.com/starfive-tech/VisionFive2/releases/download/JH7110_VF2_515_v5.12.0/visionfive2_fw_payload.img"
+        url: "https://people.redhat.com/abologna/visionfive2/images/20240509/Fedora-Minimal-40-VisionFive2-20240509.n.2-sda.raw.xz"
+        compression: xz
 - boot:
     timeout:
       minutes: 20
@@ -27,7 +28,7 @@ actions:
     - "riscv@fedora-riscv ~"
     auto_login:
       login_prompt: "fedora-riscv login:"
-      username: riscv
+      username: root
       password_prompt: "Password:"
       password: fedora_rocks!
 - test:
