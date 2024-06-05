@@ -23,7 +23,10 @@ actions:
 - boot:
     timeout:
       minutes: 20
-    method: minimal
+    method: u-boot
+    commands:
+    - usb reset
+    - boot
     prompts:
     - "riscv@fedora-riscv ~"
     auto_login:
