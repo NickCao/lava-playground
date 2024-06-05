@@ -1,12 +1,17 @@
 {% extends 'generic-uboot.jinja2' %}
 
-{% set connection_command = 'jumpstarter console mock' %}
-{% set hard_reset_command = 'jumpstarter reset mock' %}
-{% set power_on_command = 'jumpstarter power-on mock' %}
-{% set power_off_command = 'jumpstarter power-off mock' %}
+{% set connection_command = 'telnet host.containers.internal 8023' %}
+{% set hard_reset_command = [
+     'jumpstarter power-off jp-c415a913',
+     'jumpstarter power-on jp-c415a913',
+  ]
+%}
+{% set power_on_command = 'jumpstarter power-on jp-c415a913' %}
+{% set power_off_command = 'jumpstarter power-off jp-c415a913' %}
 
 {% set flasher_deploy_commands = [
-     "jumpstarter set-disk-image mock {IMAGE}",
+     'jumpstarter set-disk-image jp-c415a913 {IMAGE}',
+     'jumpstarter attach-storage jp-c415a913',
   ]
 %}
 
