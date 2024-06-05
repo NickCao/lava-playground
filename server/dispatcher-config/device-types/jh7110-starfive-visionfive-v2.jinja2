@@ -1,1 +1,3 @@
 {% extends 'base-uboot.jinja2' %}
+
+{% set bootloader_prompt = bootloader_prompt|default('StarFive #') %}

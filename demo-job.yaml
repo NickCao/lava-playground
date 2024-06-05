@@ -19,6 +19,8 @@ actions:
         url: "https://people.redhat.com/abologna/visionfive2/images/20240509/Fedora-Minimal-40-VisionFive2-20240509.n.2-sda.raw.xz"
         compression: xz
 - boot:
+    timeout:
+      minutes: 20
     method: u-boot
     commands:
     - usb reset
