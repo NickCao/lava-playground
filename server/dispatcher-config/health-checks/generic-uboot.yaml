@@ -3,42 +3,23 @@ device_type: generic-uboot
 job_name: generic-uboot-health-checks
 
 timeouts:
-  job:
-    minutes: 100
-  action:
-    minutes: 20
+ job:
+   minutes: 10
 
 priority: medium
 visibility: public
 
 actions:
-- deploy:
-    timeout:
-      minutes: 20
-    to: flasher
-    images:
-      image:
-        url: "https://people.redhat.com/abologna/visionfive2/images/20240509/Fedora-Minimal-40-VisionFive2-20240509.n.2-sda.raw.xz"
-        compression: xz
 - boot:
-    timeout:
-      minutes: 20
-    method: u-boot
-    commands:
-    - usb reset
-    - boot
-    prompts:
-    - "riscv@fedora-riscv ~"
-    auto_login:
-      login_prompt: "fedora-riscv login:"
-      username: root
-      password_prompt: "Password:"
-      password: fedora_rocks!
+    method: bootloader
+    bootloader: u-boot
+    commands: []
 - test:
-    timeout:
-      minutes: 5
-    definitions:
-    - repository: http://git.linaro.org/lava-team/lava-functional-tests.git
-      from: git
-      path: lava-test-shell/smoke-tests-basic.yaml
-      name: smoke-tests-basic
+    interactive:
+    - name: uboot-smoketest
+      prompts: ['StarFive #']
+      script:
+      - command: echo "u-boot echo test"
+        name: echo
+        successes:
+        - message: u-boot echo test
