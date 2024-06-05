@@ -1,6 +1,6 @@
-device_type: generic-uboot
+device_type: jh7110-starfive-visionfive-v2
 
-job_name: generic-uboot-health-checks
+job_name: jh7110-starfive-visionfive-v2-demo
 
 timeouts:
   job:
@@ -13,30 +13,24 @@ visibility: public
 
 actions:
 - deploy:
-    timeout:
-      minutes: 20
     to: flasher
     images:
       image:
         url: "https://people.redhat.com/abologna/visionfive2/images/20240509/Fedora-Minimal-40-VisionFive2-20240509.n.2-sda.raw.xz"
-        compression: zstd
+        compression: xz
 - boot:
-    timeout:
-      minutes: 20
     method: u-boot
     commands:
     - usb reset
     - boot
-    prompts:
-    - "root@fedora-riscv ~"
     auto_login:
       login_prompt: "fedora-riscv login:"
       username: root
       password_prompt: "Password:"
       password: fedora_rocks!
+    prompts:
+    - "root@fedora-riscv ~"
 - test:
-    timeout:
-      minutes: 5
     definitions:
     - repository: http://git.linaro.org/lava-team/lava-functional-tests.git
       from: git
