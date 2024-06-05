@@ -33,8 +33,15 @@ actions:
     prompts:
     - "root@fedora-riscv ~"
 - test:
-    definitions:
-    - repository: http://git.linaro.org/lava-team/lava-functional-tests.git
-      from: git
-      path: lava-test-shell/smoke-tests-basic.yaml
-      name: smoke-tests-basic
+    interactive:
+    - name: smoketest
+      prompts: ["root@fedora-riscv ~"]
+      script:
+      - name: echo
+        command: "echo SGVsbG8gZnJvbSBMQVZBCg== | base64 -d"
+        successes:
+        - message: "Hello from LAVA"
+      - name: ls
+        command: ls
+        successes:
+        - message: "anaconda-ks.cfg"
