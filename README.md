@@ -30,6 +30,7 @@ podman exec lava-server \
 podman run --rm -ti --network lava --name lava-dispatcher-01 --hostname lava-dispatcher-01 \
   --privileged -v /dev:/dev \
   -v /run/podman/podman.sock:/var/run/docker.sock \
+  -v /var/lib/lava/dispatcher:/var/lib/lava/dispatcher \
   -e "URL=http://lava-server" \
   -e "TOKEN=--token <TOKEN>" \
   localhost/lava-dispatcher

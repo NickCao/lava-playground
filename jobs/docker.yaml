@@ -1,0 +1,22 @@
+device_type: jh7110-starfive-visionfive-v2
+
+job_name: jh7110-starfive-visionfive-v2-docker
+
+timeouts:
+  job:
+    minutes: 100
+  action:
+    minutes: 20
+
+priority: medium
+visibility: public
+
+actions:
+- test:
+    docker:
+      image: docker.io/fedora:40
+    definitions:
+    - repository: http://git.linaro.org/lava-team/lava-functional-tests.git
+      from: git
+      path: lava-test-shell/smoke-tests-basic.yaml
+      name: smoke-tests
